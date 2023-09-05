@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ArtPiecesPreview from "./ArtPiecesPreview";
+import Image from "next/image";
 
 export default function ArtPieces({ pieces }) {
   return (

@@ -1,12 +1,18 @@
 import useSWR from "swr";
 import ArtPieces from "@/components/Artpieces";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const fetcher = (URL) => fetch(URL).then((res) => res.json());
 
 export default function HomePage() {
-  const { data, isLoading, error } = useSWR(
-    `https://example-apis.vercel.app/api/art`,
+  const { data: pieces } = useSWR(
+    "https://example-apis.vercel.app/api/art",
     fetcher
   );
-  return <ArtPieces pieces={isLoading || error ? [] : data} />;
+
+  if (!pieces) {
+    return "loading...";
+  }
+  return <ArtPieces pieces={pieces} />;
 }
