@@ -14,5 +14,10 @@ export default function HomePage() {
   if (!pieces) {
     return "loading...";
   }
-  return <ArtPieces pieces={pieces} />;
+  return (
+    <>
+      <h1>Art Gallery App</h1>
+      <ArtPieces pieces={pieces} />
+    </>
+  );
 }
