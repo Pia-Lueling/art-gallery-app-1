@@ -1,23 +1,13 @@
-import useSWR from "swr";
-import ArtPieces from "@/components/Artpieces";
+import ArtPieces from "@/components/ArtPieces";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import Spotlight from "@/components/Spotlight";
 
-const fetcher = (URL) => fetch(URL).then((res) => res.json());
-
-export default function HomePage() {
-  const { data: pieces } = useSWR(
-    "https://example-apis.vercel.app/api/art",
-    fetcher
-  );
-
-  if (!pieces) {
-    return "loading...";
-  }
+export default function HomePage({ pieces }) {
   return (
     <>
       <h1>Art Gallery App</h1>
-      <ArtPieces pieces={pieces} />
+      <Spotlight pieces={pieces} />
     </>
   );
 }
