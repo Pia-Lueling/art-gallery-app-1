@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
+import FavoriteButton from "./FavoriteButton";
 
 const ImageContainer = styled.div`
   position: relative;
@@ -18,13 +19,19 @@ const Wrapper = styled.div`
   gap: 1rem;
 `;
 
-export default function Spotlight({ image, artist }) {
+export default function Spotlight({
+  image,
+  artist,
+  onToggleFavorite,
+  isFavorite,
+}) {
   return (
-    <Wrapper>
+    <>
       <ImageContainer>
+        <FavoriteButton onClick={onToggleFavorite} isFavorite={isFavorite} />
         <StyledImage src={image} alt={`spotlight: ${artist}`} fill />
       </ImageContainer>
       <h2>{artist}</h2>
-    </Wrapper>
+    </>
   );
 }
